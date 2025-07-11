@@ -17,7 +17,7 @@ interface DragDropContextType {
 
 const DragDropContext = createContext<DragDropContextType | undefined>(undefined);
 
-export function DragDropProvider({ children }: { children: ReactNode }) {
+export function DndProvider({ children }: { children: ReactNode }) {
   const { updateEvent } = useCalendar();
   const [draggedEvent, setDraggedEvent] = useState<IEvent | null>(null);
   const [isDragging, setIsDragging] = useState(false);
