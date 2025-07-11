@@ -1,12 +1,12 @@
-import { formatTime } from "@/modules/calendar/helpers";
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import {formatTime} from "@/modules/calendar/helpers";
+import {Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {cn} from "@/lib/utils";
 
-import { ReactNode } from "react";
-import { IEvent } from "@/modules/calendar/interfaces";
-import { dayCellVariants } from "@/modules/calendar/components/views/month-view/day-cell";
-import { EventBullet } from "@/modules/calendar/components/views/month-view/event-bullet";
-import { useCalendar } from "@/modules/calendar/contexts/calendar-context";
+import {ReactNode} from "react";
+import {IEvent} from "@/modules/calendar/interfaces";
+import {dayCellVariants} from "@/modules/calendar/components/views/month-view/day-cell";
+import {EventBullet} from "@/modules/calendar/components/views/month-view/event-bullet";
+import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
 import {format} from "date-fns";
 
 interface EventListDialogProps {
@@ -24,7 +24,7 @@ export function EventListDialog({
                                 }: EventListDialogProps) {
     const cellEvents = events;
     const hiddenEventsCount = Math.max(cellEvents.length - maxVisibleEvents, 0);
-    const { badgeVariant, use24HourFormat } = useCalendar();
+    const {badgeVariant, use24HourFormat} = useCalendar();
 
     const defaultTrigger = (
         <span className="cursor-pointer">
@@ -47,10 +47,10 @@ export function EventListDialog({
                 <DialogHeader>
                     <DialogTitle>
                         <div className="flex items-center gap-2">
-                            <EventBullet color={cellEvents[0]?.color} className="" />
+                            <EventBullet color={cellEvents[0]?.color} className=""/>
                             <p className="text-sm font-medium">
                                 Events on {
-                                format(date , "EEEE, MMMM d, yyyy")
+                                format(date, "EEEE, MMMM d, yyyy")
                             }
                             </p>
                         </div>
@@ -63,11 +63,11 @@ export function EventListDialog({
                             className={cn(
                                 "flex items-center gap-2 p-2 border rounded-md hover:bg-muted",
                                 {
-                                    [dayCellVariants({ color: event.color })]: badgeVariant === "colored",
+                                    [dayCellVariants({color: event.color})]: badgeVariant === "colored",
                                 }
                             )}
                         >
-                            <EventBullet color={event.color} className="" />
+                            <EventBullet color={event.color} className=""/>
                             <div className="flex-1">
                                 <p className="text-sm font-medium">{event.title}</p>
                                 <p

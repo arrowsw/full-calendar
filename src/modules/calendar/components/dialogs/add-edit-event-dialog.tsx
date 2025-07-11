@@ -1,22 +1,31 @@
-import { useForm } from "react-hook-form";
-import { format, addMinutes, set } from "date-fns";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactNode } from "react";
-import { toast } from "sonner";
+import {useForm} from "react-hook-form";
+import {format, addMinutes, set} from "date-fns";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {ReactNode, useEffect, useMemo} from "react";
+import {toast} from "sonner";
 
-import { useDisclosure } from "@/modules/calendar/hooks";
-import { useCalendar } from "@/modules/calendar/contexts/calendar-context";
-import { eventSchema, TEventFormData } from "@/modules/calendar/schemas";
-import { COLORS } from "@/modules/calendar/constants";
-import { IEvent } from "@/modules/calendar/interfaces";
+import {useDisclosure} from "@/modules/calendar/hooks";
+import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
+import {eventSchema, TEventFormData} from "@/modules/calendar/schemas";
+import {COLORS} from "@/modules/calendar/constants";
+import {IEvent} from "@/modules/calendar/interfaces";
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogClose, DialogContent, DialogTrigger, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { DateTimePicker } from "@/components/ui/date-time-picker";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Input} from "@/components/ui/input";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogTrigger,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogFooter
+} from "@/components/ui/dialog";
+import {Button} from "@/components/ui/button";
+import {Textarea} from "@/components/ui/textarea";
+import {DateTimePicker} from "@/components/ui/date-time-picker";
 
 interface IProps {
     children: ReactNode;
@@ -25,55 +34,58 @@ interface IProps {
     event?: IEvent;
 }
 
-export function AddEditEventDialog({ children, startDate, startTime, event }: IProps) {
-    const { isOpen, onClose, onToggle } = useDisclosure();
-    const { addEvent, updateEvent } = useCalendar();
+export function AddEditEventDialog({children, startDate, startTime, event}: IProps) {
+    const {isOpen, onClose, onToggle} = useDisclosure();
+    const {addEvent, updateEvent} = useCalendar();
     const isEditing = !!event;
 
-    const getInitialDates = () => {
-        if (!startDate) return { startDate: new Date(), endDate: addMinutes(new Date(), 30) };
-        const start = startTime
-            ? set(new Date(startDate), { hours: startTime.hour, minutes: startTime.minute, seconds: 0 })
-            : new Date(startDate);
-        const end = addMinutes(start, 30);
-        return { startDate: start, endDate: end };
-    };
-
-    const initialDates = getInitialDates();
-
-    const parseEventDates = () => {
-        if (!event) return null;
+    const initialDates = useMemo(() => {
+        if (!isEditing && !event) {
+            if (!startDate) {
+                const now = new Date();
+                return { startDate: now, endDate: addMinutes(now, 30) };
+            }
+            const start = startTime
+                ? set(new Date(startDate), {
+                    hours: startTime.hour,
+                    minutes: startTime.minute,
+                    seconds: 0,
+                })
+                : new Date(startDate);
+            const end = addMinutes(start, 30);
+            return { startDate: start, endDate: end };
+        }
 
         return {
             startDate: new Date(event.startDate),
-            endDate: new Date(event.endDate)
+            endDate: new Date(event.endDate),
         };
-    };
-
-    const eventDates = parseEventDates();
+    }, [startDate, startTime, event, isEditing]);
 
     const form = useForm<TEventFormData>({
         resolver: zodResolver(eventSchema),
-        defaultValues: isEditing
-            ? {
-                title: event.title,
-                description: event.description,
-                startDate: eventDates?.startDate,
-                endDate: eventDates?.endDate,
-                color: event.color,
-            }
-            : {
-                title: "",
-                description: "",
-                startDate: initialDates.startDate,
-                endDate: initialDates.endDate,
-                color: "blue" as const,
-            },
+        defaultValues: {
+            title: event?.title ?? "",
+            description: event?.description ?? "",
+            startDate: initialDates.startDate,
+            endDate: initialDates.endDate,
+            color: event?.color ?? "blue",
+        },
     });
+
+    useEffect(() => {
+        form.reset({
+            title: event?.title ?? "",
+            description: event?.description ?? "",
+            startDate: initialDates.startDate,
+            endDate: initialDates.endDate,
+            color: event?.color ?? "blue",
+        });
+    }, [event, initialDates, form.reset]);
+
 
     const onSubmit = (values: TEventFormData) => {
         try {
-            // Format event data for API
             const formattedEvent: IEvent = {
                 ...values,
                 startDate: format(values.startDate, "yyyy-MM-dd'T'HH:mm:ss"),
@@ -140,7 +152,7 @@ export function AddEditEventDialog({ children, startDate, startTime, event }: IP
                             control={form.control}
                             name="startDate"
                             render={({field}) => (
-                                <DateTimePicker form={form} field={field} />
+                                <DateTimePicker form={form} field={field}/>
                             )}
                         />
                         <FormField
@@ -158,14 +170,16 @@ export function AddEditEventDialog({ children, startDate, startTime, event }: IP
                                     <FormLabel className="required">Variant</FormLabel>
                                     <FormControl>
                                         <Select value={field.value} onValueChange={field.onChange}>
-                                            <SelectTrigger className={`w-full ${fieldState.invalid ? "border-red-500" : ""}`}>
+                                            <SelectTrigger
+                                                className={`w-full ${fieldState.invalid ? "border-red-500" : ""}`}>
                                                 <SelectValue placeholder="Select a variant"/>
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {COLORS.map((color) => (
                                                     <SelectItem value={color} key={color}>
                                                         <div className="flex items-center gap-2">
-                                                            <div className={`size-3.5 rounded-full bg-${color}-600 dark:bg-${color}-700`} />
+                                                            <div
+                                                                className={`size-3.5 rounded-full bg-${color}-600 dark:bg-${color}-700`}/>
                                                             {color}
                                                         </div>
                                                     </SelectItem>
