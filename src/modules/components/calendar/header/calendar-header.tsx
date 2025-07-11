@@ -18,17 +18,17 @@ import {
     transition,
 } from "@/modules/components/calendar/animations";
 
-import {UserSelect} from "@/modules/components/calendar/components/header/user-select";
-import {TodayButton} from "@/modules/components/calendar/components/header/today-button";
-import {DateNavigator} from "@/modules/components/calendar/components/header/date-navigator";
-import {AddEditEventDialog} from "@/modules/components/calendar/components/dialogs/add-edit-event-dialog";
-import FilterEvents from "@/modules/components/calendar/components/header/filter";
+import {UserSelect} from "@/modules/components/calendar/header/user-select";
+import {TodayButton} from "@/modules/components/calendar/header/today-button";
+import {DateNavigator} from "@/modules/components/calendar/header/date-navigator";
+import {AddEditEventDialog} from "@/modules/components/calendar/dialogs/add-edit-event-dialog";
+import FilterEvents from "@/modules/components/calendar/header/filter";
 
 
 import {ButtonGroup} from "@/components/ui/button-group";
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import {Toggle} from "@/components/ui/toggle";
-import {Settings} from "@/modules/components/calendar/components/settings/settings";
+import {Settings} from "@/modules/components/calendar/settings/settings";
 
 export const MotionButton = motion.create(Button);
 
