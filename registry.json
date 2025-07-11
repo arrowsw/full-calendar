@@ -1,0 +1,287 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn/ui full calendar",
+  "homepage": "https://calendar.jeraidi.tech",
+  "items": [
+    {
+      "name": "date-time-picker",
+      "type": "registry:component",
+      "title": "Date Time Picker",
+      "description": "A date and time picker component for selecting dates and times.",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "form",
+        "popover",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/date-time-picker.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "registry:component",
+      "title": "Avatar Group",
+      "description": "A component to display a group of avatars.",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/avatar-group.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "day-picker",
+      "type": "registry:component",
+      "title": "Day Picker",
+      "description": "A component for selecting a single day from a calendar.",
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/day-picker.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "full-calendar",
+      "type": "registry:block",
+      "title": "Full Calendar",
+      "description": "A full calendar component for scheduling events.",
+      "dependencies": [
+        "motion",
+        "date-fns",
+        "re-resizable",
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "class-variance-authority",
+        "clsx",
+        "cmdk",
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "alert-dialog",
+        "avatar",
+        "badge",
+        "button",
+        "calendar",
+        "command",
+        "dialog",
+        "dropdown-menu",
+        "form",
+        "input",
+        "label",
+        "popover",
+        "scroll-area",
+        "select",
+        "skeleton",
+        "sonner",
+        "switch",
+        "textarea",
+        "toggle",
+        "tooltip",
+        "https://calendar.jeraidi.tech/avatar-group.json",
+        "https://calendar.jeraidi.tech/day-picker.json",
+        "https://calendar.jeraidi.tech/date-time-picker.json"
+      ],
+      "files": [
+
+        {
+          "path": "src/modules/components/calendar/contexts/calendar-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/contexts/dnd-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dialogs/add-edit-event-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dialogs/delete-event-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dialogs/event-details-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dialogs/events-list-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dnd/draggable-event.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dnd/droppable-area.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/dnd/resizable-event.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/header/calendar-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/header/date-navigator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/header/filter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/header/today-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/header/user-select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/settings/settings.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/calendar-header-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/calendar-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/day-view-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/month-view-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/week-view-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/skeletons/year-view-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/agenda-view/agenda-events.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/month-view/calendar-month-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/month-view/day-cell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/month-view/event-bullet.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/month-view/month-event-badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/calendar-day-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/calendar-time-line.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/calendar-week-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/day-view-multi-day-events-row.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/event-block.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/render-grouped-events.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/week-and-day-view/week-view-multi-day-events-row.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/views/year-view/calendar-year-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/calendar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/calendar-body.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/constants.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/animations.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/helpers.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/hooks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/interfaces.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/mocks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/requests.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/schemas.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/modules/components/calendar/types.ts",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
