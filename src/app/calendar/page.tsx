@@ -1,6 +1,6 @@
 import React, {Suspense} from "react";
-import {Calendar} from "@/modules/calendar/components/calendar";
-import {CalendarSkeleton} from "@/modules/calendar/components/skeletons/calendar-skeleton";
+import {Calendar} from "@/modules/components/calendar/calendar";
+import {CalendarSkeleton} from "@/modules/components/calendar/skeletons/calendar-skeleton";
 import Link from "next/link";
 import {ArrowUpRight, CalendarIcon, GithubIcon, LinkIcon} from "lucide-react";
 
