@@ -5,8 +5,8 @@ import type {VariantProps} from "class-variance-authority";
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import {IEvent} from "@/modules/components/calendar/interfaces";
 import {cn} from "@/lib/utils";
-import {EventDetailsDialog} from "@/modules/components/calendar/components/dialogs/event-details-dialog";
-import {DraggableEvent} from "@/modules/components/calendar/components/dnd/draggable-event";
+import {EventDetailsDialog} from "@/modules/components/calendar/dialogs/event-details-dialog";
+import {DraggableEvent} from "@/modules/components/calendar/dnd/draggable-event";
 import {formatTime} from "@/modules/components/calendar/helpers";
 
 const eventBadgeVariants = cva(

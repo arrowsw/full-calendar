@@ -4,8 +4,8 @@ import {useMemo} from "react";
 import {isSunday, isToday, startOfDay} from "date-fns";
 import {motion} from "framer-motion";
 
-import {EventBullet} from "@/modules/components/calendar/components/views/month-view/event-bullet";
-import {MonthEventBadge} from "@/modules/components/calendar/components/views/month-view/month-event-badge";
+import {EventBullet} from "@/modules/components/calendar/views/month-view/event-bullet";
+import {MonthEventBadge} from "@/modules/components/calendar/views/month-view/month-event-badge";
 
 import {getMonthCellEvents} from "@/modules/components/calendar/helpers";
 import {staggerContainer, transition} from "@/modules/components/calendar/animations";
@@ -13,8 +13,8 @@ import {staggerContainer, transition} from "@/modules/components/calendar/animat
 import type {ICalendarCell, IEvent} from "@/modules/components/calendar/interfaces";
 import {cn} from "@/lib/utils";
 import {cva} from "class-variance-authority";
-import {DroppableArea} from "@/modules/components/calendar/components/dnd/droppable-area";
-import {EventListDialog} from "@/modules/components/calendar/components/dialogs/events-list-dialog";
+import {DroppableArea} from "@/modules/components/calendar/dnd/droppable-area";
+import {EventListDialog} from "@/modules/components/calendar/dialogs/events-list-dialog";
 
 interface IProps {
     cell: ICalendarCell;

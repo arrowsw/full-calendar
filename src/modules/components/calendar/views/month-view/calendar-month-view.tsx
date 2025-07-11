@@ -2,7 +2,7 @@ import {motion} from "framer-motion";
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import {staggerContainer, transition} from "@/modules/components/calendar/animations";
 
-import {DayCell} from "@/modules/components/calendar/components/views/month-view/day-cell";
+import {DayCell} from "@/modules/components/calendar/views/month-view/day-cell";
 
 import {
     getCalendarCells,

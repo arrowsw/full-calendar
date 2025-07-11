@@ -9,15 +9,15 @@ import {
 } from "@/modules/components/calendar/animations";
 
 import {ScrollArea} from "@/components/ui/scroll-area";
-import {AddEditEventDialog} from "@/modules/components/calendar/components/dialogs/add-edit-event-dialog";
-import {CalendarTimeline} from "@/modules/components/calendar/components/views/week-and-day-view/calendar-time-line";
+import {AddEditEventDialog} from "@/modules/components/calendar/dialogs/add-edit-event-dialog";
+import {CalendarTimeline} from "@/modules/components/calendar/views/week-and-day-view/calendar-time-line";
 import {
     WeekViewMultiDayEventsRow
-} from "@/modules/components/calendar/components/views/week-and-day-view/week-view-multi-day-events-row";
+} from "@/modules/components/calendar/views/week-and-day-view/week-view-multi-day-events-row";
 import {groupEvents} from "@/modules/components/calendar/helpers";
 import type {IEvent} from "@/modules/components/calendar/interfaces";
-import {RenderGroupedEvents} from "@/modules/components/calendar/components/views/week-and-day-view/render-grouped-events";
-import {DroppableArea} from "@/modules/components/calendar/components/dnd/droppable-area";
+import {RenderGroupedEvents} from "@/modules/components/calendar/views/week-and-day-view/render-grouped-events";
+import {DroppableArea} from "@/modules/components/calendar/dnd/droppable-area";
 
 interface IProps {
     singleDayEvents: IEvent[];

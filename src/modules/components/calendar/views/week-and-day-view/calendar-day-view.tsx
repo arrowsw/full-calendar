@@ -7,15 +7,15 @@ import {useCalendar} from "@/modules/components/calendar/contexts/calendar-conte
 import {DayPicker} from "@/components/ui/day-picker";
 import {ScrollArea} from "@/components/ui/scroll-area";
 
-import {AddEditEventDialog} from "@/modules/components/calendar/components/dialogs/add-edit-event-dialog";
-import {CalendarTimeline} from "@/modules/components/calendar/components/views/week-and-day-view/calendar-time-line";
-import {DayViewMultiDayEventsRow} from "@/modules/components/calendar/components/views/week-and-day-view/day-view-multi-day-events-row";
+import {AddEditEventDialog} from "@/modules/components/calendar/dialogs/add-edit-event-dialog";
+import {CalendarTimeline} from "@/modules/components/calendar/views/week-and-day-view/calendar-time-line";
+import {DayViewMultiDayEventsRow} from "@/modules/components/calendar/views/week-and-day-view/day-view-multi-day-events-row";
 
 import {groupEvents} from "@/modules/components/calendar/helpers";
 
 import type {IEvent} from "@/modules/components/calendar/interfaces";
-import {RenderGroupedEvents} from "@/modules/components/calendar/components/views/week-and-day-view/render-grouped-events";
-import {DroppableArea} from "@/modules/components/calendar/components/dnd/droppable-area";
+import {RenderGroupedEvents} from "@/modules/components/calendar/views/week-and-day-view/render-grouped-events";
+import {DroppableArea} from "@/modules/components/calendar/dnd/droppable-area";
 
 interface IProps {
     singleDayEvents: IEvent[];
