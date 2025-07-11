@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useDragDrop } from '@/modules/calendar/contexts/drag-drop-context';
+import { useDragDrop } from '@/modules/calendar/contexts/dnd-context';
 
 interface DroppableAreaProps {
   date: Date;
