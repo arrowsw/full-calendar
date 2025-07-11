@@ -1,9 +1,9 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import type { IEvent, IUser } from "@/modules/calendar/interfaces";
-import { TCalendarView, TEventColor } from "@/modules/calendar/types";
-import { useLocalStorage } from "@/modules/calendar/hooks";
+import type { IEvent, IUser } from "@/modules/components/calendar/interfaces";
+import { TCalendarView, TEventColor } from "@/modules/components/calendar/types";
+import { useLocalStorage } from "@/modules/components/calendar/hooks";
 
 interface ICalendarContext {
     selectedDate: Date;

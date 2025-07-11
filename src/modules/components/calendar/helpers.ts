@@ -25,9 +25,9 @@ import {
     differenceInDays,
     isValid,
 } from "date-fns";
-import {TCalendarView, TEventColor} from "@/modules/calendar/types";
-import type {ICalendarCell, IEvent} from "@/modules/calendar/interfaces";
-import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
+import {TCalendarView, TEventColor} from "@/modules/components/calendar/types";
+import type {ICalendarCell, IEvent} from "@/modules/components/calendar/interfaces";
+import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 
 const FORMAT_STRING = "MMM d, yyyy";
 
