@@ -4,11 +4,11 @@ import React from "react";
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import {motion} from "framer-motion";
 import {fadeIn, transition} from "@/modules/components/calendar/animations";
-import {AgendaEvents} from "@/modules/components/calendar/components/views/agenda-view/agenda-events";
-import {CalendarMonthView} from "@/modules/components/calendar/components/views/month-view/calendar-month-view";
-import {CalendarWeekView} from "@/modules/components/calendar/components/views/week-and-day-view/calendar-week-view";
-import {CalendarDayView} from "@/modules/components/calendar/components/views/week-and-day-view/calendar-day-view";
-import {CalendarYearView} from "@/modules/components/calendar/components/views/year-view/calendar-year-view";
+import {AgendaEvents} from "@/modules/components/calendar/views/agenda-view/agenda-events";
+import {CalendarMonthView} from "@/modules/components/calendar/views/month-view/calendar-month-view";
+import {CalendarWeekView} from "@/modules/components/calendar/views/week-and-day-view/calendar-week-view";
+import {CalendarDayView} from "@/modules/components/calendar/views/week-and-day-view/calendar-day-view";
+import {CalendarYearView} from "@/modules/components/calendar/views/year-view/calendar-year-view";
 import {isSameDay, parseISO} from "date-fns";
 
 export function CalendarBody() {

@@ -1,7 +1,7 @@
 import React from "react";
 import {CalendarProvider} from "@/modules/components/calendar/contexts/calendar-context";
-import {CalendarHeader} from "@/modules/components/calendar/components/header/calendar-header";
-import {CalendarBody} from "@/modules/components/calendar/components/calendar-body";
+import {CalendarHeader} from "@/modules/components/calendar/header/calendar-header";
+import {CalendarBody} from "@/modules/components/calendar/calendar-body";
 
 import {DndProvider} from "@/modules/components/calendar/contexts/dnd-context";
 import {getEvents, getUsers} from "@/modules/components/calendar/requests";
