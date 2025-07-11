@@ -15,11 +15,11 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 
 import type {IEvent} from "@/modules/components/calendar/interfaces";
 import {ReactNode} from "react";
-import {useCalendar} from "src/modules/components/calendar/contexts/calendar-context";
-import {formatTime} from "src/modules/components/calendar/helpers";
-import {AddEditEventDialog} from "@/modules/components/calendar/components/dialogs/add-edit-event-dialog";
+import {AddEditEventDialog} from "@/modules/components/calendar/dialogs/add-edit-event-dialog";
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
+import {formatTime} from "@/modules/components/calendar/helpers";
+import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 
 interface IProps {
     event: IEvent;

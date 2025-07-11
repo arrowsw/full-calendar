@@ -4,8 +4,8 @@ import {cn} from "@/lib/utils";
 
 import {ReactNode} from "react";
 import {IEvent} from "@/modules/components/calendar/interfaces";
-import {dayCellVariants} from "@/modules/components/calendar/components/views/month-view/day-cell";
-import {EventBullet} from "@/modules/components/calendar/components/views/month-view/event-bullet";
+import {dayCellVariants} from "@/modules/components/calendar/views/month-view/day-cell";
+import {EventBullet} from "@/modules/components/calendar/views/month-view/event-bullet";
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import {format} from "date-fns";
 
