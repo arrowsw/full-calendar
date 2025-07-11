@@ -20,7 +20,7 @@ The calendar now supports event resizing in day and week views:
 
 ### Day View
 
-- Resize from all four sides (top, bottom, left, right)
+- Resize from top and bottom 
 - Visual feedback with resize handles
 - Real-time preview of new start and end times
 - Minimum duration of 15 minutes
@@ -28,7 +28,7 @@ The calendar now supports event resizing in day and week views:
 
 ### Week View
 
-- Resize from top and bottom only
+- Resize from top and bottom 
 - Smooth animations during resize
 - Time preview tooltip during resize
 - Automatic event updates when resize is complete
