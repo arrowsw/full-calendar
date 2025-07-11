@@ -5,7 +5,6 @@
   "title": "Day Picker",
   "description": "A component for selecting a single day from a calendar.",
   "dependencies": [
-    "react-day-picker",
     "date-fns",
     "lucide-react"
   ],

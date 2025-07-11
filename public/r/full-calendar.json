@@ -5,12 +5,10 @@
   "title": "Full Calendar",
   "description": "A full calendar component for scheduling events.",
   "dependencies": [
-    "utils",
     "motion",
     "date-fns",
     "re-resizable",
     "zod",
-    "react-day-picker",
     "react-hook-form",
     "@hookform/resolvers",
     "class-variance-authority",
@@ -40,9 +38,9 @@
     "textarea",
     "toggle",
     "tooltip",
-    "http://localhost:3000/r/avatar-group.json",
-    "http://localhost:3000/r/day-picker.json",
-    "http://localhost:3000/r/date-time-picker.json"
+    "https://calendar.jeraidi.tech/avatar-group.json",
+    "https://calendar.jeraidi.tech/day-picker.json",
+    "https://calendar.jeraidi.tech/date-time-picker.json"
   ],
   "files": [
     {
