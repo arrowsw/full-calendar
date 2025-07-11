@@ -28,7 +28,6 @@ import FilterEvents from "@/modules/calendar/components/header/filter";
 import {ButtonGroup} from "@/components/ui/button-group";
 import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
 import {Toggle} from "@/components/ui/toggle";
-import {useFilteredEvents} from "@/modules/calendar/hooks";
 import {Settings} from "@/modules/calendar/components/settings/settings";
 
 export const MotionButton = motion.create(Button);
@@ -37,9 +36,8 @@ export function CalendarHeader() {
     const {
         view,
         setView,
+        events
     } = useCalendar();
-
-    const events = useFilteredEvents()
 
     return (
         <div className="flex flex-col gap-4 border-b p-4 lg:flex-row lg:items-center lg:justify-between">

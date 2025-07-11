@@ -47,17 +47,7 @@ export const dayCellVariants = cva(
 export function DayCell({cell, events, eventPositions}: IProps) {
     const {day, currentMonth, date} = cell;
 
-    // const cellEvents = useMemo(
-    //     () => getMonthCellEvents(date, events, eventPositions),
-    //     [date, events, eventPositions]
-    // );
-
     const cellEvents = useMemo(() => getMonthCellEvents(date, events, eventPositions), [date, events, eventPositions]);
-
-
-    if (day === 31){
-        console.log(cellEvents)
-    }
 
     return (
         <motion.div
@@ -69,7 +59,7 @@ export function DayCell({cell, events, eventPositions}: IProps) {
             animate={{opacity: 1, y: 0}}
             transition={transition}
         >
-            <DroppableArea date={date} className='w-full h-full'>
+            <DroppableArea date={date} className='w-full h-full py-2'>
                 <motion.span
                     className={cn(
                         "h-6 w-6 px-1 flex translate-x-1 items-center justify-center rounded-full text-xs font-semibold lg:px-2 mb-1", // mb-0.5 here, always applied
