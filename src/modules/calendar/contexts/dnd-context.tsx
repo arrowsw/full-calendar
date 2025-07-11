@@ -1,7 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, {createContext, useContext, useState, ReactNode, useCallback, useEffect} from 'react';
 import { IEvent } from '@/modules/calendar/interfaces';
+import {toast} from "sonner";
+import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
 
 interface DragDropContextType {
   draggedEvent: IEvent | null;
@@ -16,6 +18,7 @@ interface DragDropContextType {
 const DragDropContext = createContext<DragDropContextType | undefined>(undefined);
 
 export function DragDropProvider({ children }: { children: ReactNode }) {
+  const { updateEvent } = useCalendar();
   const [draggedEvent, setDraggedEvent] = useState<IEvent | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [onEventDropped, setOnEventDroppedCallback] = useState<
@@ -69,6 +72,25 @@ export function DragDropProvider({ children }: { children: ReactNode }) {
   const setOnEventDropped = (callback: (event: IEvent, newStartDate: Date, newEndDate: Date) => void) => {
     setOnEventDroppedCallback(() => callback);
   };
+
+  const handleEventUpdate = useCallback((event: IEvent, newStartDate: Date, newEndDate: Date) => {
+    try {
+      const updatedEvent = {
+        ...event,
+        startDate: newStartDate.toISOString(),
+        endDate: newEndDate.toISOString(),
+      };
+
+      updateEvent(updatedEvent);
+      toast.success("Event updated successfully");
+    } catch {
+      toast.error("Failed to update event");
+    }
+  }, [updateEvent]);
+
+  useEffect(() => {
+    setOnEventDropped(handleEventUpdate);
+  }, [setOnEventDropped, handleEventUpdate]);
 
   return (
     <DragDropContext.Provider

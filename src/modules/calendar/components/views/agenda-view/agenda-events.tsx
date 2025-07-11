@@ -20,7 +20,7 @@ import {
 } from "@/modules/calendar/helpers";
 import {EventDetailsDialog} from "@/modules/calendar/components/dialogs/event-details-dialog";
 import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
-import {EventBullet} from "@/modules/calendar/components/month-view/event-bullet";
+import {EventBullet} from "@/modules/calendar/components/views/month-view/event-bullet";
 
 export const AgendaEvents: FC = () => {
     const {events, use24HourFormat, badgeVariant, agendaModeGroupBy} = useCalendar();

@@ -1,6 +1,6 @@
 import {differenceInDays, endOfDay, isWithinInterval, parseISO, startOfDay} from "date-fns";
 
-import {MonthEventBadge} from "@/modules/calendar/components/month-view/month-event-badge";
+import {MonthEventBadge} from "@/modules/calendar/components/views/month-view/month-event-badge";
 
 import type {IEvent} from "@/modules/calendar/interfaces";
 

@@ -7,7 +7,7 @@ import {IEvent} from "@/modules/calendar/interfaces";
 import {cn} from "@/lib/utils";
 import {EventDetailsDialog} from "@/modules/calendar/components/dialogs/event-details-dialog";
 import {DraggableEvent} from "@/modules/calendar/components/dnd/draggable-event";
-import { formatTime } from "@/modules/calendar/helpers";
+import {formatTime} from "@/modules/calendar/helpers";
 
 const eventBadgeVariants = cva(
     "mx-1 flex size-auto h-6.5 select-none items-center justify-between gap-1.5 truncate whitespace-nowrap rounded-md border px-2 text-xs",
@@ -60,7 +60,7 @@ export function MonthEventBadge({
                                     className,
                                     position: propPosition
                                 }: IProps) {
-    const {badgeVariant , use24HourFormat} = useCalendar();
+    const {badgeVariant, use24HourFormat} = useCalendar();
 
     const itemStart = startOfDay(parseISO(event.startDate));
     const itemEnd = endOfDay(parseISO(event.endDate));
@@ -90,8 +90,8 @@ export function MonthEventBadge({
     const eventBadgeClasses = cn(eventBadgeVariants({color, multiDayPosition: position, className}));
 
     return (
-        <EventDetailsDialog event={event}>
-            <DraggableEvent event={event}>
+        <DraggableEvent event={event}>
+            <EventDetailsDialog event={event}>
                 <div role="button" tabIndex={0} className={eventBadgeClasses}>
                     <div className="flex items-center gap-1.5 truncate">
                         {!["middle", "last"].includes(position) && badgeVariant === "dot" && (
@@ -114,7 +114,7 @@ export function MonthEventBadge({
 
                     {renderBadgeText && <span>{formatTime(new Date(event.startDate), use24HourFormat)}</span>}
                 </div>
-            </DraggableEvent>
-        </EventDetailsDialog>
+            </EventDetailsDialog>
+        </DraggableEvent>
     );
 }

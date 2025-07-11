@@ -1,11 +1,11 @@
 "use client";
 
 import {useMemo} from "react";
-import {isToday, startOfDay} from "date-fns";
+import {isSunday, isToday, startOfDay} from "date-fns";
 import {motion} from "framer-motion";
 
-import {EventBullet} from "@/modules/calendar/components/month-view/event-bullet";
-import {MonthEventBadge} from "@/modules/calendar/components/month-view/month-event-badge";
+import {EventBullet} from "@/modules/calendar/components/views/month-view/event-bullet";
+import {MonthEventBadge} from "@/modules/calendar/components/views/month-view/month-event-badge";
 
 import {getMonthCellEvents} from "@/modules/calendar/helpers";
 import {staggerContainer, transition} from "@/modules/calendar/animations";
@@ -47,30 +47,36 @@ export const dayCellVariants = cva(
 export function DayCell({cell, events, eventPositions}: IProps) {
     const {day, currentMonth, date} = cell;
 
-    const cellEvents = useMemo(
-        () => getMonthCellEvents(date, events, eventPositions),
-        [date, events, eventPositions]
-    );
-    const isSunday = date.getDay() === 0;
+    // const cellEvents = useMemo(
+    //     () => getMonthCellEvents(date, events, eventPositions),
+    //     [date, events, eventPositions]
+    // );
+
+    const cellEvents = useMemo(() => getMonthCellEvents(date, events, eventPositions), [date, events, eventPositions]);
+
+
+    if (day === 31){
+        console.log(cellEvents)
+    }
 
     return (
         <motion.div
             className={cn(
-                "flex flex-col gap-1 border-l border-t py-1.5",
-                isSunday && "border-l-0"
+                "flex flex-col gap-1 border-l border-t min-h-[180px]",
+                isSunday(date) && "border-l-0"
             )}
             initial={{opacity: 0, y: 10}}
             animate={{opacity: 1, y: 0}}
             transition={transition}
         >
-            <DroppableArea date={date}>
+            <DroppableArea date={date} className='w-full h-full'>
                 <motion.span
                     className={cn(
                         "h-6 w-6 px-1 flex translate-x-1 items-center justify-center rounded-full text-xs font-semibold lg:px-2 mb-1", // mb-0.5 here, always applied
                         !currentMonth && "text-muted-foreground",
                         isToday(date) && " bg-primary text-primary-foreground"
                     )}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{scale: 1.1}}
                     transition={transition}
                 >
                     {day}
@@ -123,10 +129,9 @@ export function DayCell({cell, events, eventPositions}: IProps) {
                         animate={{opacity: 1, y: 0}}
                         transition={{delay: 0.3, ...transition}}
                     >
-                       <EventListDialog date={date} events={cellEvents} />
+                        <EventListDialog date={date} events={cellEvents}/>
                     </motion.div>
                 )}
-
             </DroppableArea>
         </motion.div>
     );

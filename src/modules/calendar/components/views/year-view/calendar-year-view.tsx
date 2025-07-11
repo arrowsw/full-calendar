@@ -5,7 +5,7 @@ import { staggerContainer, transition } from "@/modules/calendar/animations";
 import { getCalendarCells } from "@/modules/calendar/helpers";
 import { cn } from "@/lib/utils";
 import { IEvent } from "@/modules/calendar/interfaces";
-import { EventBullet } from "@/modules/calendar/components/month-view/event-bullet";
+import { EventBullet } from "@/modules/calendar/components/views/month-view/event-bullet";
 import { EventListDialog } from "@/modules/calendar/components/dialogs/events-list-dialog";
 
 interface IProps {

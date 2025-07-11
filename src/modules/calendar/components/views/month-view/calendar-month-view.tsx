@@ -2,7 +2,7 @@ import {motion} from "framer-motion";
 import {useCalendar} from "@/modules/calendar/contexts/calendar-context";
 import {staggerContainer, transition} from "@/modules/calendar/animations";
 
-import {DayCell} from "@/modules/calendar/components/month-view/day-cell";
+import {DayCell} from "@/modules/calendar/components/views/month-view/day-cell";
 
 import {
     getCalendarCells,
@@ -10,6 +10,7 @@ import {
 } from "@/modules/calendar/helpers";
 
 import type {IEvent} from "@/modules/calendar/interfaces";
+import {useMemo} from "react";
 
 interface IProps {
     singleDayEvents: IEvent[];
@@ -19,16 +20,27 @@ interface IProps {
 const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export function CalendarMonthView({singleDayEvents, multiDayEvents}: IProps) {
-    const {selectedDate} = useCalendar();
+    // const {selectedDate} = useCalendar();
+    //
+    // const allEvents = [...multiDayEvents, ...singleDayEvents];
+    //
+    // const cells = getCalendarCells(selectedDate);
+    //
+    // const eventPositions = calculateMonthEventPositions(
+    //     multiDayEvents,
+    //     singleDayEvents,
+    //     selectedDate
+    // );
+
+    const { selectedDate } = useCalendar();
 
     const allEvents = [...multiDayEvents, ...singleDayEvents];
 
-    const cells = getCalendarCells(selectedDate);
+    const cells = useMemo(() => getCalendarCells(selectedDate), [selectedDate]);
 
-    const eventPositions = calculateMonthEventPositions(
-        multiDayEvents,
-        singleDayEvents,
-        selectedDate
+    const eventPositions = useMemo(
+        () => calculateMonthEventPositions(multiDayEvents, singleDayEvents, selectedDate),
+        [multiDayEvents, singleDayEvents, selectedDate]
     );
 
     return (

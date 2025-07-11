@@ -10,13 +10,13 @@ import {
 
 import {ScrollArea} from "@/components/ui/scroll-area";
 import {AddEditEventDialog} from "@/modules/calendar/components/dialogs/add-edit-event-dialog";
-import {CalendarTimeline} from "@/modules/calendar/components/week-and-day-view/calendar-time-line";
+import {CalendarTimeline} from "@/modules/calendar/components/views/week-and-day-view/calendar-time-line";
 import {
     WeekViewMultiDayEventsRow
-} from "@/modules/calendar/components/week-and-day-view/week-view-multi-day-events-row";
+} from "@/modules/calendar/components/views/week-and-day-view/week-view-multi-day-events-row";
 import {groupEvents} from "@/modules/calendar/helpers";
 import type {IEvent} from "@/modules/calendar/interfaces";
-import {RenderGroupedEvents} from "@/modules/calendar/components/week-and-day-view/render-grouped-events";
+import {RenderGroupedEvents} from "@/modules/calendar/components/views/week-and-day-view/render-grouped-events";
 import {DroppableArea} from "@/modules/calendar/components/dnd/droppable-area";
 
 interface IProps {

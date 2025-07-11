@@ -11,6 +11,7 @@ import type { IEvent } from "@/modules/calendar/interfaces";
 import type { VariantProps } from "class-variance-authority";
 import { DraggableEvent } from "@/modules/calendar/components/dnd/draggable-event";
 import { formatTime } from "@/modules/calendar/helpers";
+import {ResizableEvent} from "@/modules/calendar/components/dnd/resizable-event";
 
 const calendarWeekEventCardVariants = cva(
   "flex select-none flex-col gap-0.5 truncate whitespace-nowrap rounded-md border px-2 py-1.5 text-xs focus-visible:outline-offset-2",
@@ -74,8 +75,10 @@ export function EventBlock({ event, className }: IProps) {
   );
 
   return (
-    <EventDetailsDialog event={event}>
+      <ResizableEvent event={event}>
+
       <DraggableEvent event={event}>
+    <EventDetailsDialog event={event}>
         <div
           role="button"
           tabIndex={0}
@@ -98,7 +101,8 @@ export function EventBlock({ event, className }: IProps) {
             </p>
           )}
         </div>
-      </DraggableEvent>
     </EventDetailsDialog>
+      </DraggableEvent>
+      </ResizableEvent>
   );
 }
