@@ -35,7 +35,7 @@ export default function CalendarPage() {
                         </div>
                     </div>
                     <div>
-                        <Link href="" className='flex justify-center items-center gap-2 underline'>
+                        <Link href="https://github.com/yassir-jeraidi/full-calendar" className='flex justify-center items-center gap-2 underline'>
                             <span className='hidden md:block'>View on Github</span>
                             <GithubIcon className="h-6 w-6 md:w-4 md:h-4"/>
                         </Link>

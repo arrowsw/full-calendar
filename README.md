@@ -1,6 +1,20 @@
 # Full Calendar
 
-A modern, feature-rich calendar application built with Next.js, TypeScript, and Tailwind CSS.
+Give it a star if you like this project! ⭐
+
+A modern, feature-rich calendar application built with Next.js, TypeScript, and Tailwind CSS. This project provides a
+customizable and interactive calendar experience with multiple views, event management, and a modern UI.
+
+# Check out this blog post on Medium:
+
+https://medium.com/@yaceeer/building-a-full-featured-calendar-application-with-react-e249b3084b23
+
+## Demo
+
+![Screenshot 2025-04-02 at 21.54.59.png](screenshots/Screenshot%202025-04-02%20at%2021.54.59.png)
+![Screenshot 2025-04-02 at 21.53.21.png](screenshots/Screenshot%202025-04-02%20at%2021.53.21.png)
+![Screenshot 2025-04-02 at 21.54.32.png](screenshots/Screenshot%202025-04-02%20at%2021.54.32.png)
+![Screenshot 2025-04-02 at 21.53.38.png](screenshots/Screenshot%202025-04-02%20at%2021.53.38.png)
 
 ## Features
 
