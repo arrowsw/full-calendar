@@ -5,9 +5,7 @@ Give it a star if you like this project! ⭐
 A modern, feature-rich calendar application built with Next.js, TypeScript, and Tailwind CSS. This project provides a
 customizable and interactive calendar experience with multiple views, event management, and a modern UI.
 
-# Check out this blog post on Medium:
-
-https://medium.com/@yaceeer/building-a-full-featured-calendar-application-with-react-e249b3084b23
+### ⚠️ I'm currently working on documenting this calendar.
 
 ## Demo
 
@@ -56,21 +54,59 @@ The calendar now supports event resizing in day and week views:
 - **Minimum Duration**: Events cannot be shorter than 15 minutes
 - **Responsive**: Works on both desktop and mobile devices
 
-## Getting Started
+Here’s a corrected and improved version of your installation and usage section:
 
-1. Install dependencies:
+---
 
-   ```bash
-   pnpm install
-   ```
+## 📦 Installation
 
-2. Run the development server:
+Use your preferred package manager to install the component directly from the custom ShadCN UI registry:
 
-   ```bash
-   pnpm dev
-   ```
+### **PNPM**
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+```bash
+pnpm dlx shadcn@latest add "https://calendar.jeraidi.tech/r/full-calendar.json"
+```
+
+### **NPM**
+
+```bash
+npx shadcn@latest add "https://calendar.jeraidi.tech/r/full-calendar.json"
+```
+
+### **Yarn**
+
+```bash
+yarn dlx shadcn@latest add "https://calendar.jeraidi.tech/r/full-calendar.json"
+```
+
+### **Bun**
+
+```bash
+bunx --bun shadcn@latest add "https://calendar.jeraidi.tech/r/full-calendar.json"
+```
+
+---
+
+## Example Usage
+
+Inside your `app/page.tsx`:
+
+```tsx
+import React, { Suspense } from "react";
+import { Calendar } from "@/modules/components/calendar/calendar";
+import { CalendarSkeleton } from "@/modules/components/calendar/skeletons/calendar-skeleton";
+
+export default function CalendarPage() {
+  return (
+    <Suspense fallback={<CalendarSkeleton />}>
+      <Calendar />
+    </Suspense>
+  );
+}
+```
+
+> ✅ Visit your app at: `http://localhost:3000/`
 
 ## Technologies Used
 
