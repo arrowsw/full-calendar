@@ -1,5 +1,11 @@
 import {formatTime} from "@/modules/components/calendar/helpers";
-import {Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {
+    ResponsiveModal,
+    ResponsiveModalContent,
+    ResponsiveModalTrigger,
+    ResponsiveModalHeader,
+    ResponsiveModalTitle
+} from "@/components/ui/responsive-modal";
 import {cn} from "@/lib/utils";
 
 import {ReactNode} from "react";
@@ -39,13 +45,13 @@ export function EventListDialog({
     );
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
+        <ResponsiveModal>
+            <ResponsiveModalTrigger asChild>
                 {children || defaultTrigger}
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>
+            </ResponsiveModalTrigger>
+            <ResponsiveModalContent className="sm:max-w-[425px]">
+                <ResponsiveModalHeader>
+                    <ResponsiveModalTitle className='my-2'>
                         <div className="flex items-center gap-2">
                             <EventBullet color={cellEvents[0]?.color} className=""/>
                             <p className="text-sm font-medium">
@@ -54,35 +60,42 @@ export function EventListDialog({
                             }
                             </p>
                         </div>
-                    </DialogTitle>
-                </DialogHeader>
+                    </ResponsiveModalTitle>
+                </ResponsiveModalHeader>
                 <div className="max-h-[60vh] overflow-y-auto space-y-2">
-                    {cellEvents.map((event) => (
-                        <div
-                            key={event.id}
-                            className={cn(
-                                "flex items-center gap-2 p-2 border rounded-md hover:bg-muted",
-                                {
-                                    [dayCellVariants({color: event.color})]: badgeVariant === "colored",
-                                }
-                            )}
-                        >
-                            <EventBullet color={event.color} className=""/>
-                            <div className="flex-1">
-                                <p className="text-sm font-medium">{event.title}</p>
-                                <p
-                                    className={cn("text-xs", {
-                                        "text-muted": badgeVariant === "colored",
-                                        "text-muted-foreground": badgeVariant === "dot",
-                                    })}
+                    {
+                        cellEvents.length > 0 ? (
+                            cellEvents.map((event) => (
+                                <div
+                                    key={event.id}
+                                    className={cn(
+                                        "flex items-center gap-2 p-2 border rounded-md hover:bg-muted",
+                                        {
+                                            [dayCellVariants({color: event.color})]: badgeVariant === "colored",
+                                        }
+                                    )}
                                 >
-                                    {formatTime(event.startDate, use24HourFormat)}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
+                                    <EventBullet color={event.color} className=""/>
+                                    <div className="flex-1">
+                                        <p className="text-sm font-medium">{event.title}</p>
+                                        <p
+                                            className={cn("text-xs", {
+                                                "text-muted": badgeVariant === "colored",
+                                                "text-muted-foreground": badgeVariant === "dot",
+                                            })}
+                                        >
+                                            {formatTime(event.startDate, use24HourFormat)}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))) : (
+                            <p className="text-sm text-muted-foreground">
+                                No events for this date.
+                            </p>
+                        )
+                    }
                 </div>
-            </DialogContent>
-        </Dialog>
+            </ResponsiveModalContent>
+        </ResponsiveModal>
     );
 }
