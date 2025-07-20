@@ -40,7 +40,8 @@
     "tooltip",
     "https://calendar.jeraidi.tech/r/avatar-group.json",
     "https://calendar.jeraidi.tech/r/day-picker.json",
-    "https://calendar.jeraidi.tech/r/date-time-picker.json"
+    "https://calendar.jeraidi.tech/r/date-time-picker.json",
+    "https://calendar.jeraidi.tech/r/responsive-modal.json"
   ],
   "files": [
     {

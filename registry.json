@@ -38,6 +38,21 @@
       ]
     },
     {
+      "name": "responsive-modal",
+      "type": "registry:component",
+      "title": "Responsive modal",
+      "description": "A modal that pops up in the center of the screen on desktop and slide up on mobile",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/responsive-modal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "day-picker",
       "type": "registry:component",
       "title": "Day Picker",
@@ -97,7 +112,8 @@
         "tooltip",
         "https://calendar.jeraidi.tech/r/avatar-group.json",
         "https://calendar.jeraidi.tech/r/day-picker.json",
-        "https://calendar.jeraidi.tech/r/date-time-picker.json"
+        "https://calendar.jeraidi.tech/r/date-time-picker.json",
+        "https://calendar.jeraidi.tech/r/responsive-modal.json"
       ],
       "files": [
 
