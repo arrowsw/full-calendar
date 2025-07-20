@@ -95,9 +95,9 @@
         "textarea",
         "toggle",
         "tooltip",
-        "https://calendar.jeraidi.tech/avatar-group.json",
-        "https://calendar.jeraidi.tech/day-picker.json",
-        "https://calendar.jeraidi.tech/date-time-picker.json"
+        "https://calendar.jeraidi.tech/r/avatar-group.json",
+        "https://calendar.jeraidi.tech/r/day-picker.json",
+        "https://calendar.jeraidi.tech/r/date-time-picker.json"
       ],
       "files": [
 
