@@ -72,6 +72,21 @@
       ]
     },
     {
+      "name": "button-group",
+      "type": "registry:component",
+      "title": "Buttons group",
+      "description": "A group of buttons that act as a single component, allowing users to select one or more options.",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/button-group.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "full-calendar",
       "type": "registry:block",
       "title": "Full Calendar",
@@ -113,10 +128,10 @@
         "https://calendar.jeraidi.tech/r/avatar-group.json",
         "https://calendar.jeraidi.tech/r/day-picker.json",
         "https://calendar.jeraidi.tech/r/date-time-picker.json",
-        "https://calendar.jeraidi.tech/r/responsive-modal.json"
+        "https://calendar.jeraidi.tech/r/responsive-modal.json",
+        "https://calendar.jeraidi.tech/r/button-group.json"
       ],
       "files": [
-
         {
           "path": "src/modules/components/calendar/contexts/calendar-context.tsx",
           "type": "registry:component"
