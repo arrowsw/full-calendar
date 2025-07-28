@@ -41,7 +41,8 @@
     "https://calendar.jeraidi.tech/r/avatar-group.json",
     "https://calendar.jeraidi.tech/r/day-picker.json",
     "https://calendar.jeraidi.tech/r/date-time-picker.json",
-    "https://calendar.jeraidi.tech/r/responsive-modal.json"
+    "https://calendar.jeraidi.tech/r/responsive-modal.json",
+    "https://calendar.jeraidi.tech/r/button-group.json"
   ],
   "files": [
     {
