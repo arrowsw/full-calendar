@@ -8,6 +8,7 @@ import {
 import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 import type {TEventColor} from "@/modules/components/calendar/types";
 import {Toggle} from "@/components/ui/toggle";
+import {Separator} from "@/components/ui/separator";
 
 export default function FilterEvents() {
     const {selectedColors, filterEventsBySelectedColors , clearFilter } = useCalendar();
@@ -57,6 +58,7 @@ export default function FilterEvents() {
                         </span>
                     </DropdownMenuItem>
                 ))}
+                <Separator className='my-2' />
                 <DropdownMenuItem
                     disabled={selectedColors.length === 0}
                     className="flex gap-2 cursor-pointer"
