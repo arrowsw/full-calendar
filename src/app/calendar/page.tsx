@@ -7,7 +7,7 @@ import {ArrowUpRight, CalendarIcon, GithubIcon, LinkIcon} from "lucide-react";
 export default function CalendarPage() {
 
     return (
-        <main className="flex h-screen my-10 flex-col">
+        <main className="flex max-h-screen my-10 flex-col">
             <div className="container p-4 md:mx-auto">
                 <div className="flex items-center justify-between">
                     <div className='mb-4'>
