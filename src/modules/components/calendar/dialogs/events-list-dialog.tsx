@@ -1,10 +1,10 @@
 import {formatTime} from "@/modules/components/calendar/helpers";
 import {
-    ResponsiveModal,
-    ResponsiveModalContent,
-    ResponsiveModalTrigger,
-    ResponsiveModalHeader,
-    ResponsiveModalTitle
+    Modal,
+    ModalContent,
+    ModalTrigger,
+    ModalHeader,
+    ModalTitle
 } from "@/components/ui/responsive-modal";
 import {cn} from "@/lib/utils";
 
@@ -45,13 +45,13 @@ export function EventListDialog({
     );
 
     return (
-        <ResponsiveModal>
-            <ResponsiveModalTrigger asChild>
+        <Modal>
+            <ModalTrigger asChild>
                 {children || defaultTrigger}
-            </ResponsiveModalTrigger>
-            <ResponsiveModalContent className="sm:max-w-[425px]">
-                <ResponsiveModalHeader>
-                    <ResponsiveModalTitle className='my-2'>
+            </ModalTrigger>
+            <ModalContent className="sm:max-w-[425px]">
+                <ModalHeader>
+                    <ModalTitle className='my-2'>
                         <div className="flex items-center gap-2">
                             <EventBullet color={cellEvents[0]?.color} className=""/>
                             <p className="text-sm font-medium">
@@ -60,8 +60,8 @@ export function EventListDialog({
                             }
                             </p>
                         </div>
-                    </ResponsiveModalTitle>
-                </ResponsiveModalHeader>
+                    </ModalTitle>
+                </ModalHeader>
                 <div className="max-h-[60vh] overflow-y-auto space-y-2">
                     {
                         cellEvents.length > 0 ? (
@@ -75,15 +75,10 @@ export function EventListDialog({
                                         }
                                     )}
                                 >
-                                    <EventBullet color={event.color} className=""/>
-                                    <div className="flex-1">
+                                    <EventBullet color={event.color}/>
+                                    <div className="flex justify-between items-center w-full">
                                         <p className="text-sm font-medium">{event.title}</p>
-                                        <p
-                                            className={cn("text-xs", {
-                                                "text-muted": badgeVariant === "colored",
-                                                "text-muted-foreground": badgeVariant === "dot",
-                                            })}
-                                        >
+                                        <p className="text-xs">
                                             {formatTime(event.startDate, use24HourFormat)}
                                         </p>
                                     </div>
@@ -95,7 +90,7 @@ export function EventListDialog({
                         )
                     }
                 </div>
-            </ResponsiveModalContent>
-        </ResponsiveModal>
+            </ModalContent>
+        </Modal>
     );
 }

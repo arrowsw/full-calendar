@@ -14,15 +14,15 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/
 import {Input} from "@/components/ui/input";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogTrigger,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogFooter
-} from "@/components/ui/dialog";
+    Modal,
+    ModalClose,
+    ModalContent,
+    ModalTrigger,
+    ModalDescription,
+    ModalHeader,
+    ModalTitle,
+    ModalFooter
+} from "@/components/ui/responsive-modal";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea";
 import {DateTimePicker} from "@/components/ui/date-time-picker";
@@ -118,15 +118,15 @@ export function AddEditEventDialog({children, startDate, startTime, event}: IPro
     };
 
     return (
-        <Dialog open={isOpen} onOpenChange={onToggle} modal={false}>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>{isEditing ? "Edit Event" : "Add New Event"}</DialogTitle>
-                    <DialogDescription>
+        <Modal open={isOpen} onOpenChange={onToggle} modal={false}>
+            <ModalTrigger asChild>{children}</ModalTrigger>
+            <ModalContent>
+                <ModalHeader>
+                    <ModalTitle>{isEditing ? "Edit Event" : "Add New Event"}</ModalTitle>
+                    <ModalDescription>
                         {isEditing ? "Modify your existing event." : "Create a new event for your calendar."}
-                    </DialogDescription>
-                </DialogHeader>
+                    </ModalDescription>
+                </ModalHeader>
 
                 <Form {...form}>
                     <form id="event-form" onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 py-4">
@@ -210,15 +210,15 @@ export function AddEditEventDialog({children, startDate, startTime, event}: IPro
                         />
                     </form>
                 </Form>
-                <DialogFooter>
-                    <DialogClose asChild>
+                <ModalFooter className='flex justify-end gap-2'>
+                    <ModalClose asChild>
                         <Button type="button" variant="outline">Cancel</Button>
-                    </DialogClose>
+                    </ModalClose>
                     <Button form="event-form" type="submit">
                         {isEditing ? "Save Changes" : "Create Event"}
                     </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+                </ModalFooter>
+            </ModalContent>
+        </Modal>
     );
 }

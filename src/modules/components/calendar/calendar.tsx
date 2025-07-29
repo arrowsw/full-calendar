@@ -7,8 +7,6 @@ import {DndProvider} from "@/modules/components/calendar/contexts/dnd-context";
 import {getEvents, getUsers} from "@/modules/components/calendar/requests";
 
 async function getCalendarData() {
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
     return {
         events: await getEvents(),
         users: await getUsers()
