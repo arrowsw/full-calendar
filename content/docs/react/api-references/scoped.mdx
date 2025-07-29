@@ -1,0 +1,35 @@
+---
+title: Scoped
+description: Using the Scoped component to share stepper state across child components
+---
+
+The `Scoped` component acts as a provider, allowing you to synchronize stepper state via `useStepper` across child components.
+
+## Basic Usage
+
+```tsx twoslash
+
+```
+
+<Callout title="When to use Scoped">
+  Use `Scoped` only when child components need access to stepper state.
+  Otherwise, use the hook directly in your component.
+</Callout>
+
+## API Reference
+
+| Name            | Type                       | Description                           | Required |
+| --------------- | -------------------------- | ------------------------------------- | -------- |
+| initialStep     | `string`                   | ID of the initial step to display.    | No       |
+| initialMetadata | `Record<string, Metadata>` | Initial metadata for the stepper.     | No       |
+| children        | `React.ReactNode`          | Content to render inside the stepper. | Yes      |
+
+## Nested Scopes
+
+You can nest multiple scopes for more complex stepper hierarchies:
+
+```tsx
+
+```
+
+This structure allows for independent control of global and local stepper states.
