@@ -5,7 +5,7 @@ Give it a star if you like this project! ⭐
 A modern, feature-rich calendar application built with Next.js, TypeScript, and Tailwind CSS. This project provides a
 customizable and interactive calendar experience with multiple views, event management, and a modern UI.
 
-### ⚠️ I'm currently working on documenting this calendar.
+## ⚠️ The published doc is not finished yet 
 
 ## Demo
 
