@@ -5,17 +5,6 @@
 	"pages": [
 		"---Getting Started---",
 		"index",
-		"installation",
-		"---Usage---",
-		"usage/basic",
-		"usage/scoped",
-		"usage/multi-scoped",
-		"usage/conform-react",
-		"usage/react-hook-form",
-		"---API References---",
-		"api-references/define",
-		"api-references/hook",
-		"api-references/scoped",
-		"api-references/utils"
+		"installation"
 	]
 }
