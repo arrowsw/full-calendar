@@ -3,18 +3,23 @@ import { defineConfig, defineDocs } from "fumadocs-mdx/config";
 import { transformerTwoslash } from "fumadocs-twoslash";
 
 export const docs = defineDocs({
-    dir: "content/docs",
+  dir: "content/docs",
 });
 
+// const generator = createGenerator();
+
 export default defineConfig({
-    lastModifiedTime: "git",
-    mdxOptions: {
-        rehypeCodeOptions: {
-            themes: {
-                light: "github-light",
-                dark: "github-dark",
-            },
-            transformers: [...(rehypeCodeDefaultOptions.transformers ?? []), transformerTwoslash()],
-        },
+  lastModifiedTime: "git",
+  mdxOptions: {
+    rehypeCodeOptions: {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      transformers: [
+        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerTwoslash(),
+      ],
     },
+  },
 });

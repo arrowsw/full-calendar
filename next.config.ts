@@ -6,9 +6,9 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   /* config options here */
-    experimental : {
-        ppr : "incremental"
-    },
+    // experimental : {
+    //     ppr : "incremental"
+    // },
     reactStrictMode: true,
     serverExternalPackages: ["twoslash", "typescript"],
 };
