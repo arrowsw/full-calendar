@@ -180,7 +180,7 @@ export function DayCell({ cell, events, eventPositions }: IProps) {
 		],
 	);
 
-	if (isMobile) {
+	if (isMobile && currentMonth ) {
 		return (
 			<EventListDialog date={date} events={cellEvents}>
 				{cellContent}
