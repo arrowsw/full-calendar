@@ -5,18 +5,18 @@ import hero_img from "@/assets/hero.png";
 
 export default async function Home() {
 	return (
-		<div className="relative w-full max-h-screen bg-neutral-950">
-			<div className="absolute top-0 z-[0] h-full w-full bg-neutral-900/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+		<div className="relative w-full bg-neutral-950">
+			<div className="absolute top-0 z-[0] h-full w-full bg-neutral-900/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"/>
 			<section className="relative z-1 mx-auto max-w-full">
 				<div className="pointer-events-none absolute h-full w-full overflow-hidden opacity-50 [perspective:200px]">
 					<div className="absolute inset-0 [transform:rotateX(35deg)]">
 						<div className="animate-grid [inset:0%_0px] [margin-left:-50%] [height:300vh] [width:600vw] [transform-origin:100%_0_0] [background-image:linear-gradient(to_right,rgba(255,255,255,0.25)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_0)] [background-size:120px_120px] [background-repeat:repeat]"></div>
 					</div>
-					<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent to-90%"></div>
+					<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent to-90%"/>
 				</div>
 
-				<div className="z-10 mx-auto max-w-screen-xl gap-12 px-4 py-28 text-gray-600 md:px-8">
-					<div className="mx-auto max-w-3xl space-y-5 text-center leading-0 lg:leading-5">
+				<div className="z-10 mx-auto max-w-screen-xl h-screen gap-12 px-4 py-28 text-gray-600 md:px-8">
+					<div className="mx-auto max-w-3xl space-y-5 text-center lg:leading-5">
 						<div className="flex justify-center items-center">
 							<Link
 								href="https://github.com/yassir-jeraidi/full-calendar"
@@ -42,7 +42,7 @@ export default async function Home() {
 							Plan, track, and stay on top of your events with an intuitive and
 							customizable calendar designed for seamless scheduling.
 						</p>
-						<div className="items-center justify-center space-y-3 gap-x-3 sm:flex sm:space-y-0">
+						<div className="items-center justify-center gap-x-3 flex sm:space-y-0">
 							<span className="relative inline-block overflow-hidden rounded-full p-[1.5px]">
 								<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
 								<div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gray-950 text-xs font-medium text-gray-50 backdrop-blur-3xl">
@@ -67,7 +67,7 @@ export default async function Home() {
 							</span>
 						</div>
 					</div>
-					<div className="mx-10 mt-32">
+					<div className="md:mx-10 mt-10 md:mt-32">
 						<Image
 							src={hero_img}
 							className="w-full rounded-lg border shadow-lg"
