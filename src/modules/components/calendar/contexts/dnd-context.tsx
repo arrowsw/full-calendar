@@ -1,118 +1,231 @@
 "use client";
 
-import React, {createContext, useContext, useState, ReactNode, useCallback, useEffect} from 'react';
-import { IEvent } from '@/modules/components/calendar/interfaces';
-import {toast} from "sonner";
-import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
+import React, {
+	createContext,
+	type ReactNode,
+	useCallback,
+	useContext,
+	useRef,
+	useState,
+	useMemo,
+} from "react";
+import { toast } from "sonner";
+import { useCalendar } from "@/modules/components/calendar/contexts/calendar-context";
+import type { IEvent } from "@/modules/components/calendar/interfaces";
+import { DndConfirmationDialog } from "@/modules/components/calendar/dialogs/dnd-confirmation-dialog";
 
-interface DragDropContextType {
-  draggedEvent: IEvent | null;
-  isDragging: boolean;
-  startDrag: (event: IEvent) => void;
-  endDrag: () => void;
-  handleEventDrop: (date: Date, hour?: number, minute?: number) => void;
-  onEventDropped?: (event: IEvent, newStartDate: Date, newEndDate: Date) => void;
-  setOnEventDropped: (callback: (event: IEvent, newStartDate: Date, newEndDate: Date) => void) => void;
+interface PendingDropData {
+	event: IEvent;
+	newStartDate: Date;
+	newEndDate: Date;
 }
 
-const DragDropContext = createContext<DragDropContextType | undefined>(undefined);
+interface DragDropContextType {
+	draggedEvent: IEvent | null;
+	isDragging: boolean;
+	startDrag: (event: IEvent) => void;
+	endDrag: () => void;
+	handleEventDrop: (date: Date, hour?: number, minute?: number) => void;
+	showConfirmation: boolean;
+	setShowConfirmation: (show: boolean) => void;
+	pendingDropData: PendingDropData | null;
+	handleConfirmDrop: () => void;
+	handleCancelDrop: () => void;
+}
 
-export function DndProvider({ children }: { children: ReactNode }) {
-  const { updateEvent } = useCalendar();
-  const [draggedEvent, setDraggedEvent] = useState<IEvent | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [onEventDropped, setOnEventDroppedCallback] = useState<
-    ((event: IEvent, newStartDate: Date, newEndDate: Date) => void) | undefined
-  >(undefined);
+interface DndProviderProps {
+	children: ReactNode;
+	showConfirmation: boolean;
+}
 
-  const startDrag = (event: IEvent) => {
-    setDraggedEvent(event);
-    setIsDragging(true);
-  };
+const DragDropContext = createContext<DragDropContextType | undefined>(
+	undefined,
+);
 
-  const endDrag = () => {
-    setDraggedEvent(null);
-    setIsDragging(false);
-  };
+export function DndProvider({
+	children,
+	showConfirmation: showConfirmationProp = false,
+}: DndProviderProps) {
+	const { updateEvent } = useCalendar();
+	const [dragState, setDragState] = useState<{
+		draggedEvent: IEvent | null;
+		isDragging: boolean;
+	}>({ draggedEvent: null, isDragging: false });
 
-  const handleEventDrop = (targetDate: Date, hour?: number, minute?: number) => {
-    if (!draggedEvent || !onEventDropped) return;
+	const [showConfirmation, setShowConfirmation] =
+		useState<boolean>(showConfirmationProp);
 
-    const originalStart = new Date(draggedEvent.startDate);
-    const originalEnd = new Date(draggedEvent.endDate);
-    const duration = originalEnd.getTime() - originalStart.getTime();
+	const [pendingDropData, setPendingDropData] =
+		useState<PendingDropData | null>(null);
 
-    const newStart = new Date(targetDate);
-    if (hour !== undefined) {
-      newStart.setHours(hour);
-      newStart.setMinutes(minute || 0);
-    } else {
-      newStart.setHours(originalStart.getHours());
-      newStart.setMinutes(originalStart.getMinutes());
-    }
+	const onEventDroppedRef = useRef<
+		((event: IEvent, newStartDate: Date, newEndDate: Date) => void) | null
+	>(null);
 
-    // Create new end date based on the same duration
-    const newEnd = new Date(newStart.getTime() + duration);
+	const startDrag = useCallback((event: IEvent) => {
+		setDragState({ draggedEvent: event, isDragging: true });
+	}, []);
 
-    // Check if the event is being dropped in the same position
-    const isSamePosition =
-        originalStart.getFullYear() === newStart.getFullYear() &&
-        originalStart.getMonth() === newStart.getMonth() &&
-        originalStart.getDate() === newStart.getDate() &&
-        originalStart.getHours() === newStart.getHours() &&
-        originalStart.getMinutes() === newStart.getMinutes();
+	const endDrag = useCallback(() => {
+		setDragState({ draggedEvent: null, isDragging: false });
+	}, []);
 
-    if (!isSamePosition) {
-      onEventDropped(draggedEvent, newStart, newEnd);
-    }
+	const calculateNewDates = useCallback(
+		(event: IEvent, targetDate: Date, hour?: number, minute?: number) => {
+			const originalStart = new Date(event.startDate);
+			const originalEnd = new Date(event.endDate);
+			const duration = originalEnd.getTime() - originalStart.getTime();
 
-    endDrag();
-  };
+			const newStart = new Date(targetDate);
+			if (hour !== undefined) {
+				newStart.setHours(hour, minute || 0, 0, 0);
+			} else {
+				newStart.setHours(
+					originalStart.getHours(),
+					originalStart.getMinutes(),
+					0,
+					0,
+				);
+			}
 
-  const setOnEventDropped = (callback: (event: IEvent, newStartDate: Date, newEndDate: Date) => void) => {
-    setOnEventDroppedCallback(() => callback);
-  };
+			return {
+				newStart,
+				newEnd: new Date(newStart.getTime() + duration),
+			};
+		},
+		[],
+	);
 
-  const handleEventUpdate = useCallback((event: IEvent, newStartDate: Date, newEndDate: Date) => {
-    try {
-      const updatedEvent = {
-        ...event,
-        startDate: newStartDate.toISOString(),
-        endDate: newEndDate.toISOString(),
-      };
+	const isSamePosition = useCallback((date1: Date, date2: Date) => {
+		return date1.getTime() === date2.getTime();
+	}, []);
 
-      updateEvent(updatedEvent);
-      toast.success("Event updated successfully");
-    } catch {
-      toast.error("Failed to update event");
-    }
-  }, [updateEvent]);
+	const handleEventDrop = useCallback(
+		(targetDate: Date, hour?: number, minute?: number) => {
+			const { draggedEvent } = dragState;
+			if (!draggedEvent) return;
 
-  useEffect(() => {
-    setOnEventDropped(handleEventUpdate);
-  }, [setOnEventDropped, handleEventUpdate]);
+			const { newStart, newEnd } = calculateNewDates(
+				draggedEvent,
+				targetDate,
+				hour,
+				minute,
+			);
+			const originalStart = new Date(draggedEvent.startDate);
 
-  return (
-    <DragDropContext.Provider
-      value={{
-        draggedEvent,
-        isDragging,
-        startDrag,
-        endDrag,
-        handleEventDrop,
-        onEventDropped,
-        setOnEventDropped,
-      }}
-    >
-      {children}
-    </DragDropContext.Provider>
-  );
+			// Check if dropped in same position
+			if (isSamePosition(originalStart, newStart)) {
+				endDrag();
+				return;
+			}
+
+			if (showConfirmation) {
+				// Show confirmation dialog if user wants it
+				setPendingDropData({
+					event: draggedEvent,
+					newStartDate: newStart,
+					newEndDate: newEnd,
+				});
+			} else {
+				// Instantly update event if user doesn't want confirmation
+				const callback = onEventDroppedRef.current;
+				if (callback) {
+					callback(draggedEvent, newStart, newEnd);
+				}
+				endDrag();
+			}
+		},
+		[dragState, calculateNewDates, isSamePosition, endDrag, showConfirmation],
+	);
+
+	const handleConfirmDrop = useCallback(() => {
+		if (!pendingDropData) return;
+
+		const callback = onEventDroppedRef.current;
+		if (callback) {
+			callback(
+				pendingDropData.event,
+				pendingDropData.newStartDate,
+				pendingDropData.newEndDate,
+			);
+		}
+
+		// Reset states
+		setPendingDropData(null);
+		endDrag();
+	}, [pendingDropData, endDrag]);
+
+	const handleCancelDrop = useCallback(() => {
+		setPendingDropData(null);
+		endDrag();
+	}, [endDrag]);
+
+	// Default event update handler
+	const handleEventUpdate = useCallback(
+		(event: IEvent, newStartDate: Date, newEndDate: Date) => {
+			try {
+				const updatedEvent = {
+					...event,
+					startDate: newStartDate.toISOString(),
+					endDate: newEndDate.toISOString(),
+				};
+				updateEvent(updatedEvent);
+				toast.success("Event updated successfully");
+			} catch {
+				toast.error("Failed to update event");
+			}
+		},
+		[updateEvent],
+	);
+
+	// Set default callback
+	React.useEffect(() => {
+		onEventDroppedRef.current = handleEventUpdate;
+	}, [handleEventUpdate]);
+
+	// When the prop changes, update the state
+	React.useEffect(() => {
+		setShowConfirmation(showConfirmationProp);
+	}, [showConfirmationProp]);
+
+	const contextValue = useMemo(
+		() => ({
+			draggedEvent: dragState.draggedEvent,
+			isDragging: dragState.isDragging,
+			startDrag,
+			endDrag,
+			handleEventDrop,
+			showConfirmation,
+			pendingDropData,
+			handleConfirmDrop,
+			handleCancelDrop,
+			setShowConfirmation,
+		}),
+		[
+			dragState,
+			showConfirmation,
+			pendingDropData,
+			startDrag,
+			endDrag,
+			handleEventDrop,
+			handleConfirmDrop,
+			handleCancelDrop,
+			setShowConfirmation,
+		],
+	);
+
+	return (
+		<DragDropContext.Provider value={contextValue}>
+			{showConfirmation && pendingDropData && <DndConfirmationDialog />}
+			{children}
+		</DragDropContext.Provider>
+	);
 }
 
 export function useDragDrop() {
-  const context = useContext(DragDropContext);
-  if (context === undefined) {
-    throw new Error('useDragDrop must be used within a DragDropProvider');
-  }
-  return context;
+	const context = useContext(DragDropContext);
+	if (!context) {
+		throw new Error("useDragDrop must be used within a DragDropProvider");
+	}
+	return context;
 }
