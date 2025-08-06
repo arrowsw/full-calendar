@@ -59,8 +59,8 @@ export function EventDropConfirmationDialog({
 				<AlertDialogHeader>
 					<AlertDialogTitle>Confirm Event Move</AlertDialogTitle>
 					<AlertDialogDescription>
-						Are you sure you want to move {event.title} from
-						<strong>{formatDateTime(originalStart)}</strong> to
+						Are you sure you want to move <strong>{event.title}</strong> from{" "}
+						<strong>{formatDateTime(originalStart)}</strong> to{" "}
 						<strong>{formatDateTime(newStartDate)}</strong>?
 					</AlertDialogDescription>
 				</AlertDialogHeader>

@@ -1,6 +1,0 @@
-// @ts-nocheck -- skip type checking
-import * as docs_1 from "../content/docs/react/installation.mdx?collection=docs&hash=1753900800467"
-import * as docs_0 from "../content/docs/react/index.mdx?collection=docs&hash=1753900800467"
-import { _runtime } from "fumadocs-mdx"
-import * as _source from "../source.config"
-export const docs = _runtime.docs<typeof _source.docs>([{ info: {"path":"react/index.mdx","absolutePath":"/Volumes/dev/projects/full-calendar/content/docs/react/index.mdx"}, data: docs_0 }, { info: {"path":"react/installation.mdx","absolutePath":"/Volumes/dev/projects/full-calendar/content/docs/react/installation.mdx"}, data: docs_1 }], [{"info":{"path":"meta.json","absolutePath":"/Volumes/dev/projects/full-calendar/content/docs/meta.json"},"data":{"pages":["react"]}}, {"info":{"path":"react/meta.json","absolutePath":"/Volumes/dev/projects/full-calendar/content/docs/react/meta.json"},"data":{"title":"React","pages":["---Getting Started---","index","installation"],"description":"Stepperize for React","root":true}}])
