@@ -1,57 +1,63 @@
 "use client";
 
-import { format } from "date-fns";
+import {format} from "date-fns";
 
 import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import type { IEvent } from "@/modules/components/calendar/interfaces";
+import type {IEvent} from "@/modules/components/calendar/interfaces";
+import {formatTime, getColorClass} from "@/modules/components/calendar/helpers";
+import {cn} from "@/lib/utils";
+import {useCalendar} from "@/modules/components/calendar/contexts/calendar-context";
 
 interface EventDropConfirmationDialogProps {
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
-	event: IEvent | null;
-	newStartDate: Date | null;
-	newEndDate: Date | null;
-	onConfirm: () => void;
-	onCancel: () => void;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    event: IEvent | null;
+    newStartDate: Date | null;
+    newEndDate: Date | null;
+    onConfirm: () => void;
+    onCancel: () => void;
 }
 
 export function EventDropConfirmationDialog({
-	open,
-	onOpenChange,
-	event,
-	newStartDate,
-	newEndDate,
-	onConfirm,
-	onCancel,
-}: EventDropConfirmationDialogProps) {
-	if (!event || !newStartDate || !newEndDate) {
-		return null;
-	}
+                                                open,
+                                                onOpenChange,
+                                                event,
+                                                newStartDate,
+                                                newEndDate,
+                                                onConfirm,
+                                                onCancel,
+                                            }: EventDropConfirmationDialogProps) {
 
-	const originalStart = new Date(event.startDate);
+    const {use24HourFormat} = useCalendar();
 
-	const formatDateTime = (date: Date) => {
-		return format(date, "MMM dd, yyyy 'at' h:mm a");
-	};
+    if (!event || !newStartDate || !newEndDate) {
+        return null;
+    }
 
-	const handleConfirm = () => {
-		onConfirm();
-		onOpenChange(false);
-	};
+    const originalStart = new Date(event.startDate);
 
-	const handleCancel = () => {
-		onCancel();
-		onOpenChange(false);
-	};
+    const formatDate = (date: Date) => {
+        return format(date, "MMM dd, yyyy 'at '") + formatTime(date, use24HourFormat);
+    };
+
+    const handleConfirm = () => {
+        onConfirm();
+        onOpenChange(false);
+    };
+
+    const handleCancel = () => {
+        onCancel();
+        onOpenChange(false);
+    };
 
 	return (
 		<AlertDialog open={open} onOpenChange={onOpenChange}>

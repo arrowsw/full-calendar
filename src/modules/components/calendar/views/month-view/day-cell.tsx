@@ -136,7 +136,7 @@ export function DayCell({ cell, events, eventPositions }: IProps) {
 
 					<motion.div
 						className={cn(
-							"flex gap-1 px-2 lg:min-h-[94px] lg:flex-col lg:gap-2 lg:px-0",
+							"flex gap-1 lg:flex-col lg:gap-2 lg:px-0",
 							!currentMonth && "opacity-50",
 						)}
 						variants={staggerContainer}
