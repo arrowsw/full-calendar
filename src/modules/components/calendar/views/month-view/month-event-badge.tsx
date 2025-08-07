@@ -7,6 +7,7 @@ import { EventDetailsDialog } from "@/modules/components/calendar/dialogs/event-
 import { DraggableEvent } from "@/modules/components/calendar/dnd/draggable-event";
 import { formatTime } from "@/modules/components/calendar/helpers";
 import type { IEvent } from "@/modules/components/calendar/interfaces";
+import {EventBullet} from "@/modules/components/calendar/views/month-view/event-bullet";
 
 const eventBadgeVariants = cva(
 	"mx-1 flex size-auto h-6.5 select-none items-center justify-between gap-1.5 truncate whitespace-nowrap rounded-md border px-2 text-xs",
@@ -92,7 +93,8 @@ export function MonthEventBadge({
 		position = "middle";
 	}
 
-	const renderBadgeText = ["first", "none"].includes(position);
+	const renderBadgeText = ["first", "none"].includes(position) ;
+	const renderBadgeTime =  ["last", "none"].includes(position);
 
 	const color = (
 		badgeVariant === "dot" ? `${event.color}-dot` : event.color
@@ -109,14 +111,7 @@ export function MonthEventBadge({
 					<div className="flex items-center gap-1.5 truncate">
 						{!["middle", "last"].includes(position) &&
 							badgeVariant === "dot" && (
-								<svg
-									width="8"
-									height="8"
-									viewBox="0 0 8 8"
-									className="shrink-0"
-								>
-									<circle cx="4" cy="4" r="4" />
-								</svg>
+								<EventBullet color={event.color} />
 							)}
 
 						{renderBadgeText && (
@@ -131,11 +126,13 @@ export function MonthEventBadge({
 						)}
 					</div>
 
-					{renderBadgeText && (
-						<span>
+					<div className="hidden sm:block">
+						{renderBadgeTime && (
+							<span>
 							{formatTime(new Date(event.startDate), use24HourFormat)}
 						</span>
-					)}
+						)}
+					</div>
 				</div>
 			</EventDetailsDialog>
 		</DraggableEvent>
